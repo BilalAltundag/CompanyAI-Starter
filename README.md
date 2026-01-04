@@ -1,8 +1,12 @@
-# Company AI - Starter Template
+# CompanyAI Starter
 
-Şirketlerin dağınık verilerine güvenli, hızlı ve akıllı erişim sağlayan uçtan uca AI platformu için başlangıç şablonu.
+**CompanyAI Starter** - Şirketlerin dağınık verilerine güvenli, hızlı ve akıllı erişim sağlayan uçtan uca AI platformu için başlangıç şablonu.
 
 > **Not**: Bu bir demo/template uygulamadır. Veriler `localStorage`'da saklanır. Production kullanımı için veritabanı entegrasyonu gereklidir.
+
+## 📋 Proje Hakkında
+
+CompanyAI Starter, şirketlerin kendi AI destekli veri yönetimi ve chatbot sistemlerini hızlıca oluşturabilmeleri için hazırlanmış bir başlangıç şablonudur. Bu template üzerine inşa ederek, şirketinizin ihtiyaçlarına göre özelleştirebilir ve genişletebilirsiniz.
 
 ## 🚀 Özellikler
 

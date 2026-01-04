@@ -6,8 +6,8 @@ import { Providers } from '@/components/providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Company AI',
-  description: 'AI-powered company knowledge management platform',
+  title: 'CompanyAI Starter',
+  description: 'AI-powered company knowledge management platform - Starter Template',
 }
 
 export default function RootLayout({

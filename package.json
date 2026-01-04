@@ -1,6 +1,7 @@
 {
-  "name": "ai-company",
-  "version": "0.1.0",
+  "name": "company-ai-starter",
+  "version": "1.0.0",
+  "description": "Company AI Starter Template - Şirketler için AI destekli veri yönetimi ve chatbot platformu başlangıç şablonu",
   "private": true,
   "scripts": {
     "dev": "next dev",
