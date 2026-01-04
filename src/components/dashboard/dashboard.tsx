@@ -451,6 +451,7 @@ export function Dashboard() {
                   type="file"
                   multiple
                   className="hidden"
+                  id="file-upload-input"
                   onChange={(e) => {
                     const files = Array.from(e.target.files || [])
                     setPendingFiles(files)
@@ -460,7 +461,14 @@ export function Dashboard() {
                 <Button
                   variant="outline"
                   type="button"
-                  onClick={() => fileInputRef.current?.click()}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    const input = fileInputRef.current || document.getElementById('file-upload-input') as HTMLInputElement
+                    if (input) {
+                      input.click()
+                    }
+                  }}
                 >
                   <Upload className="h-4 w-4 mr-2" />
                   Dosya Seç ({pendingFiles.length})

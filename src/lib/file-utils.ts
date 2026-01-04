@@ -83,69 +83,7 @@ export const createStoredFile = (
 }
 
 export const seedGeneralFiles = (): StoredFile[] => {
-  const now = new Date().toISOString()
-  
-  // Genel alan dosyaları
-  const generalFiles = [
-    { name: 'Şirket Kuralları.txt', savedFilename: 'sirket-kurallari.txt', sizeBytes: 1.8 * 1024 },
-  ]
-
-  // Departman dosyaları
-  const departmentFiles = [
-    { name: 'İK Rehberi.txt', savedFilename: 'insan-kaynaklari-rehberi.txt', sizeBytes: 1.5 * 1024, departmentName: 'İnsan Kaynakları' },
-    { name: 'Finans Prosedürleri.txt', savedFilename: 'finans-prosedur.txt', sizeBytes: 1.4 * 1024, departmentName: 'Finans' },
-    { name: 'Satış Kılavuzu.txt', savedFilename: 'satis-kilavuz.txt', sizeBytes: 1.6 * 1024, departmentName: 'Satış' },
-  ]
-
-  const allFiles: StoredFile[] = []
-
-  // Genel dosyalar
-  generalFiles.forEach((item, idx) => {
-    const type = getDataTypeFromExtension(item.name)
-    allFiles.push({
-      id: `general-seed-${idx}`,
-      name: item.name,
-      type,
-      area: 'general',
-      sizeLabel: formatFileSize(item.sizeBytes),
-      sizeBytes: item.sizeBytes,
-      uploadedAt: now,
-      uploadedBy: 'Sistem',
-      isGeneral: true,
-      isPersonal: false,
-      ownerId: 'system',
-      ownerName: 'Sistem',
-      status: 'approved',
-      savedFilename: item.savedFilename,
-      previewUrl: `/uploads/${item.savedFilename}`,
-      mimeType: 'text/plain',
-    })
-  })
-
-  // Departman dosyaları
-  departmentFiles.forEach((item, idx) => {
-    const type = getDataTypeFromExtension(item.name)
-    allFiles.push({
-      id: `dept-seed-${idx}`,
-      name: item.name,
-      type,
-      area: 'department',
-      departmentName: item.departmentName,
-      sizeLabel: formatFileSize(item.sizeBytes),
-      sizeBytes: item.sizeBytes,
-      uploadedAt: now,
-      uploadedBy: 'Sistem',
-      isGeneral: false,
-      isPersonal: false,
-      ownerId: 'system',
-      ownerName: 'Sistem',
-      status: 'approved',
-      savedFilename: item.savedFilename,
-      previewUrl: `/uploads/${item.savedFilename}`,
-      mimeType: 'text/plain',
-    })
-  })
-
-  return allFiles
+  // No seed files - start with empty array
+  return []
 }
 

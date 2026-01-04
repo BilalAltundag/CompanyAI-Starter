@@ -104,8 +104,26 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    const { unlink } = await import('fs/promises')
-    await unlink(filePath)
+    const { unlink, access } = await import('fs/promises')
+    const { constants } = await import('fs')
+    
+    // Check if file exists before trying to delete
+    try {
+      await access(filePath, constants.F_OK)
+      // File exists, delete it
+      await unlink(filePath)
+    } catch (error: any) {
+      // File doesn't exist (ENOENT) - that's okay, consider it already deleted
+      if (error.code !== 'ENOENT') {
+        // Some other error occurred
+        console.error('Delete error:', error)
+        return NextResponse.json(
+          { error: 'Failed to delete file' },
+          { status: 500 }
+        )
+      }
+      // ENOENT means file doesn't exist - that's fine, return success
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {

@@ -81,13 +81,8 @@ export function useLocalFiles() {
 
   useEffect(() => {
     const stored = loadFromStorage()
-    if (stored.length > 0) {
-      setFiles(stored)
-    } else {
-      const seeded = seedGeneralFiles()
-      setFiles(seeded)
-      saveToStorage(seeded)
-    }
+    // Start with empty files - no seed files
+    setFiles(stored)
     setHydrated(true)
   }, [])
 
@@ -128,14 +123,25 @@ export function useLocalFiles() {
   }
 
   const removeFile = async (id: string) => {
-    const file = files.find(f => f.id === id)
-    
-    // If file has a saved filename, delete from server
-    if (file?.savedFilename) {
-      await deleteFileFromServer(file.savedFilename)
-    }
-    
-    setFiles((prev) => prev.filter((f) => f.id !== id))
+    // Use functional update to get current state
+    setFiles((prev) => {
+      const fileToDelete = prev.find(f => f.id === id)
+      
+      // If file has a saved filename, try to delete from server (fire and forget)
+      // Even if it fails (file doesn't exist), we still remove from state
+      if (fileToDelete?.savedFilename) {
+        deleteFileFromServer(fileToDelete.savedFilename).catch(err => {
+          // Silently ignore ENOENT errors (file doesn't exist) - that's fine
+          if (err?.code !== 'ENOENT') {
+            console.error('Failed to delete file from server:', err)
+          }
+        })
+      }
+      
+      // Always remove from state - this will trigger useEffect to save to localStorage
+      // Even if server deletion fails, we remove from UI and localStorage
+      return prev.filter((f) => f.id !== id)
+    })
   }
 
   const updateStatus = (id: string, status: 'approved' | 'rejected', reviewNote?: string) => {

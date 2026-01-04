@@ -252,7 +252,11 @@ export function DataManagement() {
                       size="sm"
                       className="flex-1"
                       disabled={!canDelete}
-                      onClick={async () => canDelete && await removeFile(file.id)}
+                      onClick={async () => {
+                        if (canDelete) {
+                          await removeFile(file.id)
+                        }
+                      }}
                     >
                       <Trash2 className="h-3 w-3 mr-1" />
                       Sil
@@ -336,7 +340,11 @@ export function DataManagement() {
                         variant="ghost"
                         size="sm"
                         disabled={!canDelete}
-                        onClick={async () => canDelete && await removeFile(file.id)}
+                        onClick={async () => {
+                          if (canDelete) {
+                            await removeFile(file.id)
+                          }
+                        }}
                         className={!canDelete ? 'opacity-40 cursor-not-allowed' : ''}
                       >
                         <Trash2 className="h-4 w-4" />

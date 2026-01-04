@@ -9,7 +9,7 @@ import { DepartmentStep } from './department-step'
 import { UserStep } from './user-step'
 import { DataStep } from './data-step'
 import { Department, User, StoredFile } from '@/types'
-import { seedGeneralFiles, getDataTypeFromExtension, formatFileSize } from '@/lib/file-utils'
+import { getDataTypeFromExtension, formatFileSize } from '@/lib/file-utils'
 
 export function OnboardingWizard() {
   const router = useRouter()
@@ -32,8 +32,7 @@ export function OnboardingWizard() {
     try {
       const now = new Date().toISOString()
 
-      // Genel alanı seed et + kullanıcı yüklemeleri
-      const seededGeneral = seedGeneralFiles()
+      // Sadece kullanıcının yüklediği dosyalar - seed dosyaları yok
       const uploadedGeneral: StoredFile[] = uploadedFiles.map((file, index) => ({
         id: `uploaded-${index}`,
         name: file.name,
@@ -46,7 +45,7 @@ export function OnboardingWizard() {
         isGeneral: true,
       }))
 
-      const allFiles = [...uploadedGeneral, ...seededGeneral]
+      const allFiles = [...uploadedGeneral]
 
       // Dosyaları işle (şimdilik sadece metadata al)
       const processedFiles = await Promise.all(
