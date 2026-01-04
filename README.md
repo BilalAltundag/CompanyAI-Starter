@@ -2,7 +2,8 @@
 
 **CompanyAI Starter** - Şirketlerin dağınık verilerine güvenli, hızlı ve akıllı erişim sağlayan uçtan uca AI platformu için başlangıç şablonu.
 
-> **Not**: Bu bir demo/template uygulamadır. Veriler `localStorage`'da saklanır. Production kullanımı için veritabanı entegrasyonu gereklidir.
+> **Not**: Bu bir demo/template uygulamadır. Veriler `localStorage`'da saklanır. Production kullanımı için veritabanı entegrasyonu gereklidir.> 
+<img width="1423" height="760" alt="company_ai_screenshot" src="https://github.com/user-attachments/assets/8f597f9a-7e4c-48a9-8181-4ceec7ad839e" />
 
 ## 📋 Proje Hakkında
 
